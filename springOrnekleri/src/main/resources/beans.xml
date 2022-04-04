@@ -1,0 +1,16 @@
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   <bean class="tr.gov.sayistay.beans.Araba" name="araba">
+      <property name="marka" value="Audi" />
+      <property name="model" value="R8" />
+   </bean>
+   
+   <bean class="tr.gov.sayistay.beans.Personel" name="personel">
+     <constructor-arg value="Hümeyra" />
+   </bean>
+
+	<bean class="tr.gov.sayistay.beans.Personel" name="personel2" 
+	      factory-method="personelYarat" />
+</beans>
