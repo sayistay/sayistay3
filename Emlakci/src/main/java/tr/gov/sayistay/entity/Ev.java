@@ -8,9 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = "emlakci")
+@EqualsAndHashCode(exclude = "emlakci")
 public class Ev {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

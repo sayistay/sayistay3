@@ -10,9 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = "evler")
+@EqualsAndHashCode(exclude = "evler")
 public class Emlakci {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
