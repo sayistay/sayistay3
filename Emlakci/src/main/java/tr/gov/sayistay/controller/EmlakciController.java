@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import tr.gov.sayistay.dto.EmlakDTO;
 import tr.gov.sayistay.dto.EmlakOdaDTO;
 import tr.gov.sayistay.entity.Emlakci;
@@ -23,6 +26,8 @@ import tr.gov.sayistay.service.EmlakciService;
 
 @RestController
 @RequestMapping("/emlak")
+@Api(value = "", tags = { "Emlakçı işlemleri" })
+
 public class EmlakciController {
 	@Autowired
 	private EmlakciService emlakciService;
@@ -30,6 +35,7 @@ public class EmlakciController {
 	private ModelMapper modelMapper;
 
 	@GetMapping
+	@ApiOperation(value = "Tüm emlakçıları getirir", notes = "emlakçıları listele")
 	public List<EmlakDTO> getTumEmlakcilar() {
 //		List<Emlakci> emlakcilar = emlakciService.getEmlakcilar();
 //		List<EmlakDTO> sonuc = new ArrayList<EmlakDTO>();
@@ -53,7 +59,13 @@ public class EmlakciController {
 	}
 
 	@GetMapping("/id/{id}")
-	public EmlakDTO getEmlakci(@PathVariable int id) {
+	@ApiOperation(value = "Sicili verilen emlakçıyı getirir", notes = "Id'si verilen emlakçıyı sorgulayıp getirir")
+	// @formatter:off
+	public EmlakDTO getEmlakci(
+			@ApiParam(name = "id", type = "Integer", value = "Emlakçı id'si", example = "2", required = true)
+			@PathVariable 
+			int id) {
+	// @formatter:on
 		return modelMapper.map(emlakciService.getEmlakci(id), EmlakDTO.class);
 	}
 
